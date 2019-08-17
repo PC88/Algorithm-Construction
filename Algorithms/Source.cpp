@@ -172,9 +172,29 @@ int Multiply3(int n, int a)
 	{
 		return a;
 	}
+	return Mult_acc4(a, n - 1, a);
+}
+
+// lastly we can improve this further by noticing that we are making Mult_acc4 do one
+// unnecessary test for odd(n), because we are calling it with an even number. So we will do one
+// halving on the arguments before we call it, giving us our final version:
+int Multiply4(int n, int a)
+{
+	while (!Odd(n))
+	{
+		a = a + a;
+		n = Half(n);
+	}
+	if (n == 1)
+	{
+		return a;
+	}
 	// even(n - 1) ===> n - 1 != 1
 	return Mult_acc4(a, Half(n - 1), a + a);
 }
+// Notes: this process of efficency and improving performance of code is beneficial and analogous
+// to the mathematical process of simplification or algebraic expressions.
+
 ////////////////////////////////////////////////
 /// CHAPTER TWO: ANCIENT GREEK NUMBER THEORY ///
 ////////////////////////////////////////////////
